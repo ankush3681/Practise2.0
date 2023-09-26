@@ -1,0 +1,12 @@
+{
+    "student":[
+        {"name":"ankush","age":23},
+        {"name":"mogit","age":20},
+        {"name":"pankaj","age":25}
+    ],
+    "teacher":[
+        {"name":"pulkit","sub":"backend"},
+        {"name":"abdul","sub":"react"}
+        
+    ]
+}

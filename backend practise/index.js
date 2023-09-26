@@ -7,9 +7,8 @@ app.get("/",(req,res)=>{
     res.status(200).send("Hello there")
 })
 
-app.post("/addnew",(req,res)=>{
-    res.send("data is added")
-    console.log(req.body)
-})
 
-app.listen(5000)
+
+app.listen(5000,()=>{
+    console.log("server is running...")
+})
