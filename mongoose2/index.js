@@ -1,5 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const {connection} = require("./db")
 
 const app = express();
 
@@ -9,7 +9,7 @@ app.get("/",(req,res)=>{
 
 app.listen(3200, async()=>{
     try {
-        await mongoose.connect("mongodb://127.0.0.1:27017/mongoose2");
+        await connection;
         console.log("server is connected to DB");
     } catch (err) {
         console.log(err);
