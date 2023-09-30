@@ -20,8 +20,24 @@ app.post("/adduser", async (req, res) => {
 
 app.get("/", async (req, res) => {
   const query = req.query;
+  const {sort} = req.query;
+  let user;
+  let obj = {};
+  if(query.city){
+    obj.city=query.city;
+  }
+  if(query.is_married){
+    obj.is_married=query.is_married;
+  }
   try {
-    const user = await UserModel.find(query);
+    if(sort=="dsc"){
+      user =  await UserModel.find().sort({"age":-1});
+    }else if(sort=="asc"){
+       user = await  UserModel.find().sort({ "age" : 1 });
+    }else{
+      user = await UserModel.find(obj);
+    }
+
     res.status(200).send(user);
   } catch (err) {
     res.send(err);
