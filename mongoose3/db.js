@@ -1,19 +1,8 @@
 const mongoose = require("mongoose");
+require('dotenv').config();
 
-const connection = mongoose.connect("mongodb://127.0.0.1:27017/xyz");
-
-
-const UserSchema = mongoose.Schema({
-    username:{type:String,required:true},
-    age:{type:Number,required:true},
-    city:{type:String,required:true},
-    married:{type:String,required:true}
-},{
-    versionKey:false
-});
-
-const UserModel = mongoose.model("user",UserSchema);
+const connection = mongoose.connect(process.env.URL);
 
 module.exports={
-    connection,UserModel
+    connection
 }
