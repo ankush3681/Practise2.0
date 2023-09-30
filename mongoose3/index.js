@@ -1,6 +1,7 @@
 const express = require("express");
 const {connection} = require("./db");
-const {UserRouter} = require("./routes/User.route")
+const {UserRouter} = require("./routes/User.route");
+const { HeroRouter } = require("./routes/Hero.route");
 require("dotenv").config();
 
 const app = express();
@@ -8,6 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/user",UserRouter);
+app.use("/hero",HeroRouter);
 
 
 
