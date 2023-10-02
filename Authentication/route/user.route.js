@@ -1,5 +1,6 @@
 const express = require("express");
 const { UserModel } = require("../model/User.model");
+const jwt = require('jsonwebtoken');
 
 const UserRouter = express.Router();
 
@@ -14,9 +15,15 @@ UserRouter.post("/register",async (req,res)=>{
 })
 
 UserRouter.post("/login",async(req,res)=>{
+    const {email,pass} = req.body;
     try {
-        const user = UserModel.find();
-        res.status(200).send(user);
+        const user = await UserModel.findOne({email,pass});
+        if(user){
+            const token = jwt.sign({ school: 'masai' }, 'secret');
+            res.status(200).send({"msg":"Login Successfull","token":token});
+        }else{
+            res.status(200).send({"msg":"Wrong credentials!!!"});
+        }
     } catch (err) {
         res.status(400).send(err.message)
     }
