@@ -10,6 +10,8 @@ const auth = (req,res,next)=>{
             next();
         }
       });
+   }else{
+    res.status(400).send({"msg":"Please provide token"}); 
    }
  }
 

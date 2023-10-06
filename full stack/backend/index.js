@@ -3,7 +3,8 @@ require("dotenv").config();
 const { connection } = require("./db");
 const { UserRouter } = require("./route/User.route");
 const jwt = require("jsonwebtoken");
-// const { auth } = require("./middleware/auth.middleware");
+const { auth } = require("./middleware/auth.middleware");
+const { NoteRouter } = require("./route/Note.route");
 
 const app = express();
 app.use(express.json());
@@ -15,17 +16,16 @@ app.get("/", (req, res) => {
 
 // post
 
-// app.use(auth);
+app.use(auth);
+
+app.use("/note",NoteRouter);
+
+
+
 
 app.get("/post", (req, res) => {
-  const token = req.headers.authorization;
-  if(token){
-      jwt.verify(token.split(" ")[1], 'ankush', (err, decoded)=> {
-          res.send("Post from Ankush");
-        })
-    }else{
-        res.send({"err":"Please provide token"})
-    }
+
+    res.status(200).send("Post from Ankush");
 });
 
 

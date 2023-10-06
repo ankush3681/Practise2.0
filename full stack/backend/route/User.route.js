@@ -32,14 +32,15 @@ UserRouter.post("/login", async (req, res) => {
     // console.log(user)
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
-        if (err) {
-          throw err;
+        if (result) {
+          let token = jwt.sign({ post: "full_stack" }, "ankush");
+          res.status(200).send({ msg: "Login Successfull.", token });
+        }else{
+            res.status(200).send({ msg: "Wrong Credentials!!!" });
         }
-        let token = jwt.sign({ post: "full_stack" }, "ankush");
-        res.status(200).send({ msg: "Login Successfull.", token });
       });
     } else {
-      res.status(200).send({ msg: "Wrong Credentials!!!" });
+      res.status(200).send({ msg: "Email not found!!!" });
     }
   } catch (err) {
     res.status(400).send({ msg: err.message });
