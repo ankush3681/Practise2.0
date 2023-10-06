@@ -6,6 +6,7 @@ const NoteSchema = mongoose.Schema(
     body: { type: String , required: true },
     category: { type: String, required: true },
     author: { type: String, required: true },
+    authorID: { type: String, required: true }
   },
   { versionKey: false }
 );

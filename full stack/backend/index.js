@@ -7,28 +7,14 @@ const { auth } = require("./middleware/auth.middleware");
 const { NoteRouter } = require("./route/Note.route");
 
 const app = express();
+
 app.use(express.json());
+
 app.use("/user", UserRouter);
 
-app.get("/", (req, res) => {
-  res.send("hello there");
-});
+app.use(auth);  //middleware
 
-// post
-
-app.use(auth);
-
-app.use("/note",NoteRouter);
-
-
-
-
-app.get("/post", (req, res) => {
-
-    res.status(200).send("Post from Ankush");
-});
-
-
+app.use("/note", NoteRouter);
 
 app.listen(process.env.Port, async () => {
   try {
