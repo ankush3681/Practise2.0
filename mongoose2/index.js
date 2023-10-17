@@ -31,9 +31,9 @@ app.get("/", async (req, res) => {
   }
   try {
     if(sort=="dsc"){
-      user =  await UserModel.find().sort({"age":-1});
+      user =  await UserModel.find(obj).sort({"age":-1});
     }else if(sort=="asc"){
-       user = await  UserModel.find().sort({ "age" : 1 });
+       user = await  UserModel.find(obj).sort({ "age" : 1 });
     }else{
       user = await UserModel.find(obj);
     }
